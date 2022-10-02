@@ -4,7 +4,7 @@
   "description": "Middleware NodeJs server",
   "main": "dist/src/app.js",
   "scripts": {
-    "start": "node dist/src/app.js",
+    "start": "node dist//app.js",
     "build": "tsc"
   },
   "repository": {

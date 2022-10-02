@@ -13,10 +13,10 @@ export class LogService {
         this._model = new LogsModel();
     }
 
-    public async log(pMessage: string, pRequestId: number = 0): Promise<void> {
+    public async log(pMessage: string, pKey: string = 'root'): Promise<void> {
         const vDate = new Date();
         const vLog = vDate.toString() + ' - ' + pMessage;
-        this._model.request_id = pRequestId;
+        this._model.key = pKey;
         this._model.body = vLog;
         await this._model.save();
     }

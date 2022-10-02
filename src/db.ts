@@ -27,7 +27,7 @@ export class Database {
     }
 
     public static async connectMySQL(): Promise<Sequelize> {
-        const vConnection = new Sequelize('db', 'root', '123456', {
+        const vConnection = new Sequelize('ertaoza_db', 'root', 'Merabi!23', {
             host: '127.0.0.1',
             dialect: 'mysql',
             port: 3306

@@ -1,6 +1,5 @@
 import { Sequelize, Model, DataTypes, InferAttributes, InferCreationAttributes } from "sequelize";
 import { Database, DBHandler } from "../db";
-import { SettingsService } from "../services/settings.service";
 
 export class SettingsModel extends Model<InferAttributes<SettingsModel>, InferCreationAttributes<SettingsModel>> {
     declare zone: string;
@@ -12,7 +11,7 @@ SettingsModel.init({
     zone: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: SettingsService.rootKey
+        defaultValue: 'root'
     },
     key: {
         type: DataTypes.STRING,

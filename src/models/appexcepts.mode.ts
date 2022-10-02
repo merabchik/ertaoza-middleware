@@ -1,16 +1,22 @@
 import { Sequelize, Model, DataTypes, InferAttributes, InferCreationAttributes } from "sequelize";
 import { Database, DBHandler } from "../db";
 
-export class LogsModel extends Model<InferAttributes<LogsModel>, InferCreationAttributes<LogsModel>> {
+export class AppexceptsModel extends Model<InferAttributes<AppexceptsModel>, InferCreationAttributes<AppexceptsModel>> {
     declare key: string;
+    declare ipaddr: string;
     declare body: string;
 }
 
-LogsModel.init({
+AppexceptsModel.init({
     key: {
         type: DataTypes.STRING,
         allowNull: false,
-        comment: "Log key"
+        comment: "Exception key"
+    },
+    ipaddr:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        comment: "IP address"
     },
     body: {
         type: DataTypes.TEXT,
@@ -20,11 +26,10 @@ LogsModel.init({
 },
     {
         sequelize: (DBHandler.connection instanceof Sequelize) ? DBHandler.connection : Database.memorySQLite,
-        modelName: 'logs',
-        tableName: 'logs',
+        modelName: 'appexcepts',
+        tableName: 'app_excepts',
         timestamps: true,
         underscored: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at'
+        createdAt: 'created_at'
     }
 );

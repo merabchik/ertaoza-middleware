@@ -5,9 +5,24 @@ export class SettingsService {
 
     private _model: SettingsModel;
     public static rootKey: string = 'root';
+    private initKey: string = 'init';
 
     constructor() {
         this._model = new SettingsModel();
+    }
+
+    getInitSettings(): Promise<any> {
+        return new Promise(async (resolve, reject) => {
+            SettingsModel.findAll({
+                where: {
+                    zone: this.initKey
+                }
+            }).then((settings: SettingsModel[]) => {
+                resolve(settings);
+            }).catch((pError) => {
+                reject(pError);
+            });
+        });
     }
 
     public async get(pKey: string, pZone: string = ''): Promise<string> {

@@ -1,14 +1,19 @@
 import express from "express";
-import { JobsService } from "./services/jobs.service";
 import { env } from "process";
+import { SettingsService } from "./services/settings.service";
 
 const app = express();
 const port = env.PORT || 3131;
 
-const vJobsService = new JobsService();
 
-app.get('/init', (req, res) => {
+app.get('/settings', (req, res) => {
 
+    const vSettings = new SettingsService();
+    vSettings.getInitSettings().then((pSettings) => {
+        res.status(200).json(pSettings);
+    }).catch((pError) => {
+        res.status(500).send(pError);
+    });
 });
 
 
